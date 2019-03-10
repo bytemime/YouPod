@@ -1,4 +1,9 @@
 import argparse
+import json
+
+def generateFile(data):
+    with open('appdata.json', 'w') as outfile:
+        outfile.write(json.dumps(data, indent=4, sort_keys=True))
 
 def main():
 
@@ -24,6 +29,15 @@ def main():
         print(rm)
     if ls:
         print(ls)
+
+    podcastData = {'name': "PodcastName", 'totalPodcasts': 5}
+    podcastData['podcasts'] = []  
+    podcastData['podcasts'].append({  
+        'link': 'URL',
+        'playfrom': 54,
+        'lastplay': 'Timestamp'
+    })
+    generateFile(podcastData)
 
 if __name__ == '__main__':
     main()

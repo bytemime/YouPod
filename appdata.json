@@ -1,0 +1,11 @@
+{
+    "name": "PodcastName",
+    "podcasts": [
+        {
+            "lastplay": "Timestamp",
+            "link": "URL",
+            "playfrom": 54
+        }
+    ],
+    "totalPodcasts": 5
+}
