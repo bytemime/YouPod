@@ -1,9 +1,27 @@
 import argparse
 import json
+import youtube_dl
 
 def generateFile(data):
     with open('appdata.json', 'w') as outfile:
         outfile.write(json.dumps(data, indent=4, sort_keys=True))
+
+def downloadAudio(songUrl):
+
+    downloadOptions = {
+            'format': 'bestaudio/best',
+            'outtmpl': '%(title)s.%(ext)s',
+            'nocheckcertificate': True,
+            'postprocessors': [{
+                    'key': 'FFmpegExtractAudio',
+                    'preferredcodec': 'mp3',
+                    'preferredquality': '192',
+            }],
+    }
+
+    with youtube_dl.YoutubeDL(downloadOptions) as dl:
+        dl.download([songUrl])
+    
 
 def main():
 
@@ -24,7 +42,7 @@ def main():
     ls = args.list_podcasts
     
     if url:
-        print(url)
+        downloadAudio(url)
     if rm:
         print(rm)
     if ls:
